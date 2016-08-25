@@ -16,6 +16,7 @@ class DFA {
 
 public:
 	DFA();
+	void load(string filename);
 	void add_state(string name);
 	void add_action(string name);
 	void add_final_state(string name);

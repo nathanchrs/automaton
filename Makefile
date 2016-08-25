@@ -1,5 +1,5 @@
 all:
-	g++ src/dfa.cpp src/main.cpp -o bin/automaton -g
+	g++ src/dfa.cpp src/main.cpp -o automaton -g
 
 clean:
-	rm bin/automaton
+	rm automaton

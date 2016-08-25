@@ -1,10 +1,52 @@
 #include "dfa.h"
 #include <string>
-#include <iostream>
+#include <fstream>
 using namespace std;
 
 
 DFA::DFA() {};
+
+void DFA::load(string filename) {
+	ifstream fin;
+	fin.open(filename.c_str());
+
+	int n_actions;
+	int n_states;
+	int n_final_states;
+	string inp;
+
+	vector<string> inp_actions;
+	vector<string> inp_states;
+
+	fin >> n_actions;
+	for (int i = 0; i < n_actions; i++) {
+		fin >> inp;
+		add_action(inp);
+		inp_actions.push_back(inp);
+	}
+
+	fin >> n_states;
+	for (int i = 0; i < n_states; i++) {
+		fin >> inp;
+		add_state(inp);
+		inp_states.push_back(inp);
+	}
+
+	fin >> n_final_states;
+	for (int i = 0; i < n_final_states; i++) {
+		fin >> inp;
+		add_final_state(inp);
+	}
+
+	for (int i = 0; i < n_states; i++) {
+		for (int j = 0; j < n_actions; j++) {
+			fin >> inp;
+			set_delta(inp_actions[j], inp_states[i], inp);
+		}
+	}
+
+	fin.close();
+}
 
 void DFA::add_state(string name) {
 	if (states.count(name) == 0) {
@@ -59,5 +101,5 @@ string DFA::transition(string initial_state, vector<string> sequence) {
 }
 
 bool DFA::is_final_state(string state) {
-	return states.count(state) > 0;
+	return final_states.count(state) > 0;
 }
