@@ -35,6 +35,14 @@ int main() {
 		}
 	} while (!load_file_ok);
 
+	/* Cetak alfabet (simbol-simbol yang diterima) untuk bantuan */
+	printf("DFA berhasil dibaca.\n");
+	printf("Simbol-simbol yang diterima: ");
+	for (i = 0; i < automaton.n_symbols; i++) {
+		printf("%c ", automaton.symbols[i]);
+	}
+	printf("\n");
+
 	do {
 
 		/* Baca input string */
