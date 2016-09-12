@@ -20,12 +20,13 @@ int main() {
 	printf("NIM       : 13515001\nNama      : Jonathan Christopher\nKelas     : K-01, TBFO IF2220\nTanggal   : 12 September 2016\nTopik     : DFA\nDeskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu.\n");
 	printf("\n");
 
-	/* Load file DFA */
+	/* Baca nama file DFA, ulangi hingga file dapat dibuka */
 	unsigned char load_file_ok = 0;
 	do {
 		char path_buf[MAX_FILENAME_LENGTH + 1];
 		printf("Path ke file DFA (untuk tugas TBFO, gunakan dfa/marble.dfa): ");
 		scanf(FILENAME_SCAN_STR, path_buf);
+		/* Load file DFA */
 		automaton = load_dfa((char *) path_buf);
 		if (automaton.start_state_index == -1) {
 			printf("Gagal membaca file DFA.\n");
@@ -49,7 +50,7 @@ int main() {
 		printf("%s", automaton.states[current_state_index]);
 		for (i = 0; i < input_len; i++) {
 			next_symbol_index = get_symbol_index(automaton, input_buf[i]);
-			/* asumsi jika terbaca sebuah simbol yang tidak dikenali, maka tidak akan berpindah state */
+			/* Jika terbaca sebuah simbol yang tidak dikenali, maka tidak akan berpindah state */
 			if (next_symbol_index >= 0) {
 				current_state_index = delta(automaton, current_state_index, next_symbol_index);
 				printf(" -> %s", automaton.states[current_state_index]);

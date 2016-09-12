@@ -3,22 +3,28 @@
 
 #define SYMBOL_COUNT_LIMIT 255
 #define SYMBOL_SCAN_STR "%255s"
+
 #define STATE_NAME_LENGTH_LIMIT 1023
 #define STATE_SCAN_STR "%1023s"
 
 typedef struct {
 
+	/* Jumlah simbol (ukuran alfabet) dan array berisi karakter-karaketer simbol */
 	int n_symbols;
 	char *symbols;
 
+	/* Jumlah state dan array berisi nama-nama state */
 	int n_states;
 	char **states;
 
+	/* Jumlah final state dan array berisi indeks-indeks final state */
 	int n_final_states;
 	int *final_state_indexes;
 
+	/* Indeks state awal */
 	int start_state_index;
 
+	/* Array 2-dimensi berisi transition table (baris: indeks state, kolom: indeks simbol, isi: indeks state tujuan */
 	int *transition_table;
 
 } dfa;
