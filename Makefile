@@ -1,5 +1,5 @@
 all:
-	g++ src/dfa.cpp src/main.cpp -o automaton -g
+	gcc src/main.c src/dfa.c -o automaton -Wall -O2 -g
 
 clean:
 	rm automaton

@@ -1,28 +1,46 @@
-#ifndef DFA_HEADER
-#define DFA_HEADER
+#ifndef DFA_H
+#define DFA_H
 
-#include <map>
-#include <set>
-#include <vector>
-#include <string>
-using namespace std;
+#define SYMBOL_COUNT_LIMIT 255
+#define SYMBOL_SCAN_STR "%255s"
+#define STATE_NAME_LENGTH_LIMIT 1023
+#define STATE_SCAN_STR "%1023s"
 
-class DFA {
+typedef struct {
 
-	map<string, int> actions;
-	map<string, int> states;
-	set<string> final_states;
-	vector<vector<string> > deltas;
+	int n_symbols;
+	char *symbols;
 
-public:
-	DFA();
-	void load(string filename);
-	void add_state(string name);
-	void add_action(string name);
-	void add_final_state(string name);
-	void set_delta(string action, string from_state, string to_state);
-	string transition(string initial_state, vector<string> actions);
-	bool is_final_state(string state);
-};
+	int n_states;
+	char **states;
+
+	int n_final_states;
+	int *final_state_indexes;
+
+	int start_state_index;
+
+	int *transition_table;
+
+} dfa;
+
+/* Load spesifikasi DFA dari file dengan path yang diberikan.
+ * Menghasilkan DFA tersebut jika berhasil, dan DFA dengan start_state -1 jika gagal.
+ * Format file DFA ada di file README.md */
+dfa load_dfa(const char *path);
+
+/* Deallocate memori yang digunakan oleh DFA */
+void unload_dfa(dfa *automaton);
+
+/* Menghasilkan indeks state tujuan dari DFA jika diberikan keadaan indeks state dan indeks symbol input */
+int delta(dfa automaton, int current_state_index, int symbol_index);
+
+/* Menghasilkan nomor state dari nama state yang diberikan dan -1 jika nama state tersebut tidak ditemukan */
+int get_state_index(dfa automaton, const char *state);
+
+/* Menghasilkan nomor symbol dari karakter symbol yang diberikan dan -1 jika nama symbol tersebut tidak ditemukan */
+int get_symbol_index(dfa automaton, char symbol);
+
+/* Menghasilkan 1 jika nomor state yang diberikan adalah final state, 0 jika tidak atau state tidak ditemukan */
+unsigned char is_final_state(dfa automaton, int current_state_index);
 
 #endif
