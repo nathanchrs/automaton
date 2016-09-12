@@ -12,7 +12,7 @@ Deskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh D
 ## Cara Menjalankan
 
 1. Jalankan `make` untuk build (atau `gcc src/main.c src/dfa.c -o automaton` jika tool `make` tidak berhasil)
-2. Jalankan file executable hasil keluarannya (`automaton` atau `automaton.exe` pada Windows)
+2. Jalankan file executable hasil keluarannya (`./automaton` atau `automaton.exe` pada Windows)
 3. Masukkan nama file DFA. Contoh file DFA diberikan dalam direktori `dfa`. (untuk tugas TBFO, file DFA yang digunakan adalah `dfa/marble.dfa`)
 4. Masukkan string input untuk DFA. Hasil akan ditampilkan di layar
 
