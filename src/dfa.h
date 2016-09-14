@@ -9,7 +9,7 @@
 
 typedef struct {
 
-	/* Jumlah simbol (ukuran alfabet) dan array berisi karakter-karaketer simbol */
+	/* Jumlah simbol (ukuran alfabet) dan array berisi karakter-karakter simbol */
 	int n_symbols;
 	char *symbols;
 
