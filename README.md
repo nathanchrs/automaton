@@ -17,7 +17,7 @@ Deskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh D
 4. Masukkan string input untuk DFA. Hasil akan ditampilkan di layar
 
 Disediakan 2 contoh file DFA di direktori `dfa`:
-- `marble.dfa`: DFA pada Exercise 2.2.1, (Hopcroft et al., *Introduction to Automata Theory, Languages and Computation, 3rd ed.*, Pearson Education)
+- `marble.dfa`: DFA pada Exercise 2.2.1, (Hopcroft, John E.; Motwani, Rajeev; Ullman, Jeffrey D. (2013). Introduction to Automata Theory, Languages, and Computation (3rd ed.). Pearson.)
 - `onoff.dfa`: DFA dari sebuah saklar yang hanya memiliki 2 state, on dan off, dengan alfabet 0 dan 1
 
 ### Format File DFA
