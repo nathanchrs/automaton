@@ -1,3 +1,5 @@
-*.exe
+automaton
+automaton.exe
+*.pdf
 *.log
 *.aux
