@@ -1,10 +1,15 @@
+CC=gcc
+LATEX=pdflatex
+
 .PHONY: all clean report
 
-all:
-	gcc src/main.c src/dfa.c -o automaton
+all: automaton report	
+
+automaton:
+	$(CC) src/main.c src/dfa.c -o automaton
 
 report:
-	pdflatex report/report.tex -output-directory report
+	-$(LATEX) report/report.tex -output-directory report
 
 clean:
 	-rm automaton
