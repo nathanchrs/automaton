@@ -6,11 +6,15 @@
 \usepackage[scaled]{beramono}
 \usepackage[T1]{fontenc}
 
+\usepackage{amsmath}
+
 \usepackage{listings}
 \lstset{basicstyle=\footnotesize\ttfamily,tabsize=4,breaklines,frame=single}
 
 \usepackage{graphicx}
 \usepackage{tikz}
+\usepackage{float}
+\usepackage{booktabs}
 
 \renewcommand{\figurename}{Gambar}
 \renewcommand{\refname}{Referensi}
@@ -36,7 +40,192 @@
 
 	\section{\textit{Deterministic Finite Automata}}
 
+		\textit{Deterministic finite automata} yang digunakan untuk merepresentasikan mesin kelereng pada persoalan diatas adalah:
+		\[A = (Q, \Sigma, \delta, q_0, F)\]
+		dengan
+		\[Q = \{LLLC, RLLC, LRRC, LRLC, RRRC, LRLD, RRLC, LLRD, RRLD, LLLD, RLRD, RLRC, RLLD\}\]
+		\[\Sigma = \{A, B\}\]
+		\[q_0 = LLLC\]
+		\[F = \{LRLD, LLRD, RRLD, LLLD, RLRD, RLLD\}\]
+		dan fungsi transisi yang didefinisikan sebagai berikut:
+		\[
+			\delta(q, a) = \left\{
+				\begin{array}{lr}
+					RLLC, & q = LLLC \text{ dan } a = A\\
+					LRRC, & q = LLLC \text{ dan } a = B\\
+					LRLC, & q = RLLC \text{ dan } a = A\\
+					RRRC, & q = RLLC \text{ dan } a = B\\
+					RRRC, & q = LRRC \text{ dan } a = A\\
+					LRLD, & q = LRRC \text{ dan } a = B\\
+					RRLC, & q = LRLC \text{ dan } a = A\\
+					LLRD, & q = LRLC \text{ dan } a = B\\
+					LLRD, & q = RRRC \text{ dan } a = A\\
+					RRLD, & q = RRRC \text{ dan } a = B\\
+					RRLC, & q = LRLD \text{ dan } a = A\\
+					LLRD, & q = LRLD \text{ dan } a = B\\
+					LLLD, & q = RRLC \text{ dan } a = A\\
+					RLRD, & q = RRLC \text{ dan } a = B\\
+					RLRC, & q = LLRD \text{ dan } a = A\\
+					LLLD, & q = LLRD \text{ dan } a = B\\
+					LLLD, & q = RRLD \text{ dan } a = A\\
+					RLRD, & q = RRLD \text{ dan } a = B\\
+					RLLC, & q = LLLD \text{ dan } a = A\\
+					LRRC, & q = LLLD \text{ dan } a = B\\
+					LRRC, & q = RLRD \text{ dan } a = A\\
+					RLLD, & q = RLRD \text{ dan } a = B\\
+					LRRC, & q = RLRC \text{ dan } a = A\\
+					RLLD, & q = RLRC \text{ dan } a = B\\
+					LRLC, & q = RLLD \text{ dan } a = A\\
+					RRRC, & q = RLLD \text{ dan } a = B
+				\end{array}
+			\right\}
+		\]
+
+		Karakter-karakter pada nama \textit{state} secara berturut-turut melambangkan posisi tuas $x_1$, $x_2$, dan $x_3$, serta jalur terakhir yang dilewati oleh kelereng (C atau D). Jika belum ada kelereng yang lewat, dianggap nilai jalur terakhir tersebut bernilai C karena keadaan tersebut juga tidak diterima oleh DFA.
+
+		\begin{table}[H]
+			\centering
+			\begin{tabular}{@{}rlcc@{}}
+				\toprule
+				              &      & A    & B    \\ \midrule
+				$\rightarrow$ & LLLC & RLLC & LRRC \\
+				              & RLLC & LRLC & RRRC \\
+				              & LRRC & RRRC & LRLD \\
+				              & LRLC & RRLC & LLRD \\
+				              & RRRC & LLRD & RRLD \\
+				$\ast$        & LRLD & RRLC & LLRD \\
+				              & RRLC & LLLD & RLRD \\
+				$\ast$        & LLRD & RLRC & LLLD \\
+				$\ast$        & RRLD & LLLD & RLRD \\
+				$\ast$        & LLLD & RLLC & LRRC \\
+				$\ast$        & RLRD & LRRC & RLLD \\
+				              & RLRC & LRRC & RLLD \\
+				$\ast$        & RLLD & LRLC & RRRC \\ \bottomrule
+			\end{tabular}
+			\caption{Tabel transisi untuk DFA mesin kelereng}
+			\label{tab:marbledfa}
+		\end{table}
+
+		\begin{figure}[H]
+			\centering
+			\begin{tikzpicture}[scale=0.2]
+			\tikzstyle{every node}+=[inner sep=0pt]
+			\draw [black] (7.8,-5.4) circle (3);
+			\draw (7.8,-5.4) node {$LLLC$};
+			\draw [black] (16.3,-16.1) circle (3);
+			\draw (16.3,-16.1) node {$LRLC$};
+			\draw [black] (7.8,-53.1) circle (3);
+			\draw (7.8,-53.1) node {$RRRC$};
+			\draw [black] (31.1,-5.4) circle (3);
+			\draw (31.1,-5.4) node {$RLLC$};
+			\draw [black] (56.2,-44.8) circle (3);
+			\draw (56.2,-44.8) node {$LRLD$};
+			\draw [black] (56.2,-44.8) circle (2.4);
+			\draw [black] (7.8,-28.9) circle (3);
+			\draw (7.8,-28.9) node {$LRRC$};
+			\draw [black] (56.2,-26.7) circle (3);
+			\draw (56.2,-26.7) node {$RRLC$};
+			\draw [black] (40.7,-44.8) circle (3);
+			\draw (40.7,-44.8) node {$LLRD$};
+			\draw [black] (40.7,-44.8) circle (2.4);
+			\draw [black] (72.6,-53.1) circle (3);
+			\draw (72.6,-53.1) node {$RRLD$};
+			\draw [black] (72.6,-53.1) circle (2.4);
+			\draw [black] (56.2,-5.4) circle (3);
+			\draw (56.2,-5.4) node {$LLLD$};
+			\draw [black] (56.2,-5.4) circle (2.4);
+			\draw [black] (72.6,-5.4) circle (3);
+			\draw (72.6,-5.4) node {$RLRD$};
+			\draw [black] (72.6,-5.4) circle (2.4);
+			\draw [black] (24.5,-44.8) circle (3);
+			\draw (24.5,-44.8) node {$RLRC$};
+			\draw [black] (34.6,-26.7) circle (3);
+			\draw (34.6,-26.7) node {$RLLD$};
+			\draw [black] (34.6,-26.7) circle (2.4);
+			\draw [black] (10.8,-5.4) -- (28.1,-5.4);
+			\fill [black] (28.1,-5.4) -- (27.3,-4.9) -- (27.3,-5.9);
+			\draw [black] (7.8,-8.4) -- (7.8,-25.9);
+			\fill [black] (7.8,-25.9) -- (8.3,-25.1) -- (7.3,-25.1);
+			\draw [black] (28.67,-7.16) -- (18.73,-14.34);
+			\fill [black] (18.73,-14.34) -- (19.67,-14.28) -- (19.09,-13.47);
+			\draw [black] (29.78,-8.1) -- (9.12,-50.4);
+			\fill [black] (9.12,-50.4) -- (9.92,-49.91) -- (9.02,-49.47);
+			\draw [black] (7.8,-31.9) -- (7.8,-50.1);
+			\fill [black] (7.8,-50.1) -- (8.3,-49.3) -- (7.3,-49.3);
+			\draw [black] (10.65,-29.84) -- (53.35,-43.86);
+			\fill [black] (53.35,-43.86) -- (52.75,-43.14) -- (52.43,-44.09);
+			\draw [black] (17.12,-18.98) -- (23.68,-41.92);
+			\fill [black] (23.68,-41.92) -- (23.94,-41.01) -- (22.98,-41.28);
+			\draw [black] (18.24,-18.39) -- (38.76,-42.51);
+			\fill [black] (38.76,-42.51) -- (38.62,-41.58) -- (37.86,-42.23);
+			\draw [black] (10.71,-52.37) -- (37.79,-45.53);
+			\fill [black] (37.79,-45.53) -- (36.89,-45.24) -- (37.14,-46.21);
+			\draw [black] (10.8,-53.1) -- (69.6,-53.1);
+			\fill [black] (69.6,-53.1) -- (68.8,-52.6) -- (68.8,-53.6);
+			\draw [black] (56.2,-41.8) -- (56.2,-29.7);
+			\fill [black] (56.2,-29.7) -- (55.7,-30.5) -- (56.7,-30.5);
+			\draw [black] (53.2,-44.8) -- (43.7,-44.8);
+			\fill [black] (43.7,-44.8) -- (44.5,-45.3) -- (44.5,-44.3);
+			\draw [black] (56.2,-23.7) -- (56.2,-8.4);
+			\fill [black] (56.2,-8.4) -- (55.7,-9.2) -- (56.7,-9.2);
+			\draw [black] (58.03,-24.32) -- (70.77,-7.78);
+			\fill [black] (70.77,-7.78) -- (69.89,-8.11) -- (70.68,-8.72);
+			\draw [black] (37.7,-44.8) -- (27.5,-44.8);
+			\fill [black] (27.5,-44.8) -- (28.3,-45.3) -- (28.3,-44.3);
+			\draw [black] (41.8,-42.01) -- (55.1,-8.19);
+			\fill [black] (55.1,-8.19) -- (54.34,-8.75) -- (55.27,-9.12);
+			\draw [black] (71.62,-50.26) -- (57.18,-8.24);
+			\fill [black] (57.18,-8.24) -- (56.96,-9.16) -- (57.91,-8.83);
+			\draw [black] (72.6,-50.1) -- (72.6,-8.4);
+			\fill [black] (72.6,-8.4) -- (72.1,-9.2) -- (73.1,-9.2);
+			\draw [black] (53.2,-5.4) -- (34.1,-5.4);
+			\fill [black] (34.1,-5.4) -- (34.9,-5.9) -- (34.9,-4.9);
+			\draw [black] (53.5,-6.71) -- (10.5,-27.59);
+			\fill [black] (10.5,-27.59) -- (11.44,-27.69) -- (11,-26.79);
+			\draw [black] (69.78,-6.42) -- (10.62,-27.88);
+			\fill [black] (10.62,-27.88) -- (11.54,-28.07) -- (11.2,-27.13);
+			\draw [black] (69.98,-6.87) -- (37.22,-25.23);
+			\fill [black] (37.22,-25.23) -- (38.16,-25.28) -- (37.67,-24.41);
+			\draw [black] (22.33,-42.73) -- (9.97,-30.97);
+			\fill [black] (9.97,-30.97) -- (10.21,-31.88) -- (10.9,-31.16);
+			\draw [black] (25.96,-42.18) -- (33.14,-29.32);
+			\fill [black] (33.14,-29.32) -- (32.31,-29.77) -- (33.18,-30.26);
+			\draw [black] (32,-25.2) -- (18.9,-17.6);
+			\fill [black] (18.9,-17.6) -- (19.34,-18.44) -- (19.84,-17.57);
+			\draw [black] (32.46,-28.81) -- (9.94,-50.99);
+			\fill [black] (9.94,-50.99) -- (10.86,-50.79) -- (10.16,-50.08);
+			\draw [black] (1.9,-5.4) -- (4.8,-5.4);
+			\fill [black] (4.8,-5.4) -- (4,-4.9) -- (4,-5.9);
+			\end{tikzpicture}
+			\caption{Diagram DFA mesin kelereng}
+		    \label{fig:marbledfa}
+		\end{figure}
+
 	\section{Daftar Asumsi}
+
+		\begin{itemize}
+			\item Sebuah simbol terdiri atas tepat satu karakter
+			\item Batas maksimum jumlah simbol adalah 255 simbol
+			\item Nama sebuah \textit{state} adalah sebuah \textit{string} tidak kosong yang tidak mengandung karakter \textit{whitespace} (spasi, \textit{newline} dsb.) dan memiliki panjang maksimum 1023 karakter
+			\item Jumlah \textit{state} maksimal yang dapat diproses adalah sekitar $2^{31}-1$ \textit{state}, jika memori sistem tempat program dijalankan memadai
+			\item Nama \textit{state} dan simbol bersifat \textit{case-sensitive}
+			\item Panjang \textit{file path} relatif yang dimasukkan ke program untuk memilih \textit{file} DFA tidak lebih dari 255 karakter
+			\item \textit{File} DFA pasti valid sesuai format yang telah ditentukan:
+		\end{itemize}
+
+		\begin{lstlisting}
+<string yang masing-masing karakternya melambangkan sebuah simbol (tidak boleh mengandung whitespace dalam string dan harus unik, maksimal 255 karakter)>
+
+<jumlah state (1 <= n <= 1023)>
+<nama-nama state dipisahkan whitespace (isi nama tidak boleh mengandung whitespace dan harus unik, maksimal 1023 karakter)>
+
+<jumlah final state (1 <= n <= jumlah state)>
+<nama-nama final state dipisahkan whitespace (harus unik dan harus ada di daftar state)>
+
+<nama state awal (hanya 1, harus ada di daftar state)>
+
+<representasi fungsi transisi dalam bentuk tabel (baris mengacu pada nama state awal (urutan sesuai daftar state), kolom mengacu pada simbol (urutan sesuai daftar simbol), isi merupakan nama state tujuan)>
+		\end{lstlisting}
 
 	\section{\textit{Source Code}}
 
@@ -59,7 +248,7 @@
 		\bibitem{hopcroft13}
 		Hopcroft, John E.; Motwani, Rajeev; Ullman, Jeffrey D.
 		(2013).
-		\textit{Introduction to Automata Theory, Languages, and Computation (3rd ed.)}
+		\textit{Introduction to Automata Theory, Languages, and Computation (3rd ed.)}.
 		Pearson.
 
 	\end{thebibliography}

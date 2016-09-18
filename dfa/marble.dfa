@@ -1,40 +1,40 @@
 AB
 
 13
-lllc
-rllc
-lrrc
-lrlc
-rrrc
-lrld
-rrlc
-llrd
-rrld
-llld
-rlrd
-rlrc
-rlld
+LLLC
+RLLC
+LRRC
+LRLC
+RRRC
+LRLD
+RRLC
+LLRD
+RRLD
+LLLD
+RLRD
+RLRC
+RLLD
 
 6
-lrld
-llrd
-rrld
-llld
-rlrd
-rlld
+LRLD
+LLRD
+RRLD
+LLLD
+RLRD
+RLLD
 
-lllc
+LLLC
 
-rllc lrrc
-lrlc rrrc
-rrrc lrld
-rrlc llrd
-llrd rrld
-rrlc llrd
-llld rlrd
-rlrc llld
-llld rlrd
-rllc lrrc
-lrrc rlld
-lrrc rlld
-lrlc rrrc
+RLLC LRRC
+LRLC RRRC
+RRRC LRLD
+RRLC LLRD
+LLRD RRLD
+RRLC LLRD
+LLLD RLRD
+RLRC LLLD
+LLLD RLRD
+RLLC LRRC
+LRRC RLLD
+LRRC RLLD
+LRLC RRRC

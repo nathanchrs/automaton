@@ -4,7 +4,7 @@
 NIM       : 13515001
 Nama      : Jonathan Christopher
 Kelas     : K-01, TBFO IF2220
-Tanggal   : 12 September 2016
+Tanggal   : 18 September 2016
 Topik     : DFA
 Deskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu.
 ```
@@ -33,6 +33,6 @@ Disediakan 2 contoh file DFA di direktori `dfa`:
 
 <nama state awal (hanya 1, harus ada di daftar state)>
 
-<transition table (baris: nama state awal, kolom: simbol, isi: nama state tujuan)>
+<representasi fungsi transisi dalam bentuk tabel (baris: nama state awal, kolom: simbol, isi: nama state tujuan)>
 ```
 
