@@ -9,7 +9,7 @@
 \usepackage{amsmath}
 
 \usepackage{listings}
-\lstset{basicstyle=\footnotesize\ttfamily,tabsize=4,breaklines,frame=single}
+\lstset{basicstyle=\footnotesize\ttfamily,tabsize=4,breaklines,frame=single, moredelim=[is][\underbar]{__}{__}}
 
 \usepackage{graphicx}
 \usepackage{tikz}
@@ -212,6 +212,8 @@
 			\item Jumlah \textit{state} maksimal yang dapat diproses adalah sekitar $2^{31}-1$ \textit{state}, jika memori sistem tempat program dijalankan memadai
 			\item Nama \textit{state} dan simbol bersifat \textit{case-sensitive}
 			\item Panjang \textit{file path} relatif yang dimasukkan ke program untuk memilih \textit{file} DFA tidak lebih dari 255 karakter
+			\item \textit{String} simbol dalam input pengguna terdiri dari karakter-karakter yang terdefinisi sebagai simbol untuk DFA yang sedang dijalankan, serta memiliki panjang tidak lebih dari 1023 karakter
+			\item Jika dalam \textit{string} input pengguna terdapat karakter yang tidak terdefinisi sebagai simbol untuk DFA yang sedang dijalankan, maka karakter tersebut akan dibiarkan dan \textit{state} DFA tidak akan berubah
 			\item DFA yang diberikan merupakan DFA yang valid dengan fungsi transisi yang terdefinisi lengkap
 			\item \textit{File} DFA pasti valid sesuai format yang telah ditentukan:
 		\end{itemize}
@@ -245,6 +247,40 @@
 			\lstinputlisting{../src/marble.dfa}
 
 	\section{Contoh Interaksi dengan Program}
+
+		Berikut adalah contoh interaksi pengguna dengan program. Input pengguna digarisbawahi.
+
+		\begin{lstlisting}
+Automaton - Tugas I IF2220 Teori Bahasa Formal dan Automata
+===========================================================
+
+NIM       : 13515001
+Nama      : Jonathan Christopher
+Kelas     : K-01, TBFO IF2220
+Tanggal   : 12 September 2016
+Topik     : DFA
+Deskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu, serta contoh DFA berdasarkan Exercise 2.2.1 dari buku Introduction to Automata Theory, Languages, and Computation (3rd ed.)
+
+Path ke file DFA (untuk tugas TBFO, gunakan ../src/marble.dfa): __../src/marble.dfa__
+DFA berhasil dibaca.
+Simbol-simbol yang diterima: A B
+
+Masukkan input string: __AAAB__
+LLLC -> RLLC -> LRLC -> RRLC -> RLRD
+String diterima? Ya (berakhir di final state)
+Coba lagi? (y/n): __y__
+
+Masukkan input string: __A__
+LLLC -> RLLC
+String diterima? Tidak (tidak berakhir di final state)
+Coba lagi? (y/n): __y__
+
+Masukkan input string: __BBBBBBA__
+LLLC -> LRRC -> LRLD -> LLRD -> LLLD -> LRRC -> LRLD -> RRLC
+String diterima? Tidak (tidak berakhir di final state)
+Coba lagi? (y/n): __n__
+
+		\end{lstlisting}
 
 	\begin{thebibliography}{9}
 

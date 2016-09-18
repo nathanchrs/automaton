@@ -16,7 +16,7 @@ int main() {
 	unsigned char repeat_input = 0;
 
 	/* Cetak header */
-	printf("\nDFA\n===\n\n");
+	printf("\nAutomaton - Tugas I IF2220 Teori Bahasa Formal dan Automata\n===========================================================\n\n");
 	printf("NIM       : 13515001\nNama      : Jonathan Christopher\nKelas     : K-01, TBFO IF2220\nTanggal   : 12 September 2016\nTopik     : DFA\nDeskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu, serta contoh DFA berdasarkan Exercise 2.2.1 dari buku Introduction to Automata Theory, Languages, and Computation (3rd ed.)\n");
 	printf("\n");
 
