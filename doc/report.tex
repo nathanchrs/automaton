@@ -40,7 +40,7 @@
 
 	\section{\textit{Deterministic Finite Automata}}
 
-		\textit{Deterministic finite automata} yang digunakan untuk merepresentasikan mesin kelereng pada persoalan diatas adalah:
+		\textit{Deterministic finite automata} yang digunakan untuk merepresentasikan mesin kelereng pada persoalan ini adalah:
 		\[A = (Q, \Sigma, \delta, q_0, F)\]
 		dengan
 		\[Q = \{LLLC, RLLC, LRRC, LRLC, RRRC, LRLD, RRLC, LLRD, RRLD, LLLD, RLRD, RLRC, RLLD\}\]
@@ -203,6 +203,8 @@
 
 	\section{Daftar Asumsi}
 
+	Asumsi-asumsi yang digunakan dalam penyelesaian persoalan untuk tugas ini adalah:
+
 		\begin{itemize}
 			\item Sebuah simbol terdiri atas tepat satu karakter
 			\item Batas maksimum jumlah simbol adalah 255 simbol
@@ -210,6 +212,7 @@
 			\item Jumlah \textit{state} maksimal yang dapat diproses adalah sekitar $2^{31}-1$ \textit{state}, jika memori sistem tempat program dijalankan memadai
 			\item Nama \textit{state} dan simbol bersifat \textit{case-sensitive}
 			\item Panjang \textit{file path} relatif yang dimasukkan ke program untuk memilih \textit{file} DFA tidak lebih dari 255 karakter
+			\item DFA yang diberikan merupakan DFA yang valid dengan fungsi transisi yang terdefinisi lengkap
 			\item \textit{File} DFA pasti valid sesuai format yang telah ditentukan:
 		\end{itemize}
 
@@ -239,7 +242,7 @@
 			\lstinputlisting[language=C]{../src/main.c}
 
 		\subsection{marble.dfa}
-			\lstinputlisting{../dfa/marble.dfa}
+			\lstinputlisting{../src/marble.dfa}
 
 	\section{Contoh Interaksi dengan Program}
 

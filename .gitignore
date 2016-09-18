@@ -1,5 +1,5 @@
-automaton
-automaton.exe
+bin/automaton
+bin/automaton.exe
 *.pdf
 *.log
 *.aux

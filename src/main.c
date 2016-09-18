@@ -17,14 +17,14 @@ int main() {
 
 	/* Cetak header */
 	printf("\nDFA\n===\n\n");
-	printf("NIM       : 13515001\nNama      : Jonathan Christopher\nKelas     : K-01, TBFO IF2220\nTanggal   : 12 September 2016\nTopik     : DFA\nDeskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu.\n");
+	printf("NIM       : 13515001\nNama      : Jonathan Christopher\nKelas     : K-01, TBFO IF2220\nTanggal   : 12 September 2016\nTopik     : DFA\nDeskripsi : Program sederhana untuk mengecek apakah suatu string diterima oleh DFA tertentu, serta contoh DFA berdasarkan Exercise 2.2.1 dari buku Introduction to Automata Theory, Languages, and Computation (3rd ed.)\n");
 	printf("\n");
 
 	/* Baca nama file DFA, ulangi hingga file dapat dibuka */
 	unsigned char load_file_ok = 0;
 	do {
 		char path_buf[MAX_FILENAME_LENGTH + 1];
-		printf("Path ke file DFA (untuk tugas TBFO, gunakan dfa/marble.dfa): ");
+		printf("Path ke file DFA (untuk tugas TBFO, gunakan ../src/marble.dfa): ");
 		scanf(FILENAME_SCAN_STR, path_buf);
 		/* Load file DFA */
 		automaton = load_dfa((char *) path_buf);

@@ -1,19 +1,19 @@
 CC=gcc
 LATEX=pdflatex
 
-.PHONY: all clean report
+.PHONY: all clean bin doc
 
-all: automaton report	
+all: bin doc
 
-automaton:
-	$(CC) src/main.c src/dfa.c -o automaton
+bin:
+	$(CC) src/main.c src/dfa.c -o bin/automaton
 
-report:
-	-$(LATEX) report/report.tex -output-directory report
+doc:
+	-$(LATEX) doc/report.tex -output-directory doc
 
 clean:
-	-rm automaton
-	-rm automaton.exe
-	-rm report/report.aux
-	-rm report/report.log
-	-rm report/report.pdf
+	-rm bin/automaton
+	-rm bin/automaton.exe
+	-rm doc/report.aux
+	-rm doc/report.log
+	-rm doc/report.pdf
